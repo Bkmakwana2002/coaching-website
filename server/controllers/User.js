@@ -89,3 +89,19 @@ exports.authUser = async (req, res) => {
 
     }
 }
+
+
+exports.removeUser = async (req, res) => {  
+    try {
+        const email = req.body.email
+        const enRoll = req.body.enRoll
+        const result = await User.findOneAndDelete({email:email, enRoll: enRoll})
+        if (result) {
+            return res.status(201).json({result:result, success:true,message: 'User Removed' })
+        } else {
+            return res.status(404).json({success:false, message: 'User Not Found' })
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message })
+    }
+}

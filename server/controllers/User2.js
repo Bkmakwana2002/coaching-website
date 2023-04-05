@@ -89,3 +89,17 @@ exports.enrollCourse = async (req, res) => {
         })
     }
 }
+
+exports.removeUser2 = async (req, res) => {  
+    try {
+        const email = req.body.email
+        const result = await User2.findOneAndDelete({email:email})
+        if (result) {
+            return res.status(201).json({result:result, success:true,message: 'User Removed' })
+        } else {
+            return res.status(404).send({success:false, message: 'User Not Found' })
+        }
+    } catch (error) {
+        return res.status(500).send({ message: error.message })
+    }
+}
