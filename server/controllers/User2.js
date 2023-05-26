@@ -1,17 +1,20 @@
 const generateToken = require('../generateToken')
 const User2 = require('../models/User2')
 const Course = require('../models/Course')
+const {EmailVerificationToken, RegistrationMailer} = require('../middleware/RegistrationMail');
+const jwt = require('jsonwebtoken')
 
 exports.registerUser = async (req, res) => {
     try {
 
-        const { name, email, password, phone, pic, DOB } = req.body
+        const { name, email, password, phone, pic, DOB } = req.body;
 
-        let user = await User2.findOne({ email })
+        let user = await User2.findOne({ email });
         if (user) {
             return res.status(404).send({ success: false, message: 'User already exists' })
         }
 
+        // send email verification link 
         user = await User2.create({
             name,
             email,
@@ -19,10 +22,16 @@ exports.registerUser = async (req, res) => {
             phone,
             pic,
             DOB,
-        })
+        });
+
+        EmailVerificationToken(email, user._id);
+
         const token = await generateToken(user._id)
         if (res.status(201)) {
             // Sending Mail
+
+            RegistrationMailer(user.email, password);
+
             res.send({
                 success:true,
                 _id: user._id,
@@ -36,11 +45,40 @@ exports.registerUser = async (req, res) => {
         }
 
     } catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             success: false,
             message: error.message
         })
     }
+}
+
+exports.EmailVerification = async (req, res)=>{
+    
+    try{
+        const {id,token} = req.params;
+
+        const user = await User2.findById(id);
+        if(!user){
+            return res.send(`<h1>Invalid Link</h1>`)
+        }
+
+        jwt.verify(token, process.env.EMAIL_VERIFICATION_TOKEN, async function(err, decoded){
+            if(err){
+                console.log(err);
+                return res.send(`<h1>Email not verified</h1>`)
+            }
+            else {
+                await User2.findByIdAndUpdate(id, { verified:true});
+                return res.send(`<h1>Email verified successfully</h1>`)
+            }
+        });
+    }catch(err){
+        res.status(500).json({sucess:false, message:err.message});
+        return false;
+    }
+
+
+
 }
 
 exports.authUser = async (req, res) => {
@@ -49,17 +87,28 @@ exports.authUser = async (req, res) => {
         const user = await User2.findOne({ email }).select('+password')
 
         if (user && ((await user.matchPassword(password)))) {
-            res.status(201).send({
-                success: true,
-                name: user.name,
-                email: user.email,
-                pic: user.pic,
-                token: generateToken(user._id),
-            })
+            if(user.verified===true){
+
+                res.status(201).send({
+                    success: true,
+                    name: user.name,
+                    email: user.email,
+                    pic: user.pic,
+                    token: generateToken(user._id),
+                    
+                })
+            }else{
+                res.status(401).send({
+                    success: false,
+                    message: "User is not verified",
+                });
+            }
         }
         else {
-            res.status(401);
-            throw new Error("Wrong Email or Password");
+            res.status(401).send({
+                success: false,
+                message: "Wrong Email or Password"
+            });
         }
 
     } catch (error) {
@@ -103,3 +152,4 @@ exports.removeUser2 = async (req, res) => {
         return res.status(500).send({ message: error.message })
     }
 }
+

@@ -66,14 +66,13 @@ const NavbarStudent = () => {
 
       {/* -----------------SIDE BAR--------------------- */}
               
-       {open?
-       <div className={`z-40 fixed mr-4 w-64`}>
+       <div className={`transition ease-in-out delay-150 z-40 fixed mr-4 w-64 ${ open ? "translate-x-0" : "-translate-x-full"}`}>
          <aside
            className={`relative h-screen ease-in-out duration-1000`}
            aria-label="Sidebar"
          >
           
-           <div className={`overflow-y-auto h-screen py-4 px-3 bg-gray-50 dark:bg-blue-500 ${ open ? "translate-x-0" : "-translate-x-96"} ease-in duration-300`}>
+           <div className={`overflow-y-auto h-screen py-4 px-3 bg-gray-50 dark:bg-blue-500`}>
              <ul className="space-y-4">
 
               {/* Home */}
@@ -236,7 +235,6 @@ const NavbarStudent = () => {
           </div>
         </aside>
       </div>
-      :""}
 
 
      </div>

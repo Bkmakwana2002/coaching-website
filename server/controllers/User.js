@@ -1,6 +1,6 @@
 const generateToken = require('../generateToken')
 const User = require('../models/User')
-const RegistrationMailer = require('../middleware/RegistrationMail');
+const {RegistrationMailer} = require('../middleware/RegistrationMail');
 
 exports.registerUser = async (req, res) => {
     try {

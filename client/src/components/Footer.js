@@ -81,10 +81,10 @@ return(
             <li className="flex space-x-4 justify-center items-center align-middle">
               <golocation size="{48}" className="text-yellow-300">
                 <link to="/" className="text-gray-400 hover:text-white" />Oppsite Panchayat Bhawan,
-                Verma tower,shiv colony mahendergarh road narnaul ,Haryana
+                Verma tower, Shiv Colony Mahendergarh Road Narnaul, Haryana
               </golocation></li>
             <li className="flex space-x-2 justify-center items-center align-middle">
-              <AiOutlinePhone size="{35}" className="text-red-300"/>
+              <AiOutlinePhone  className="text-3xl text-red-300"/>
                 <Link to="/" className="text-gray-400 hover:text-white"> 01282-254539, 01282-254540 </Link>
             </li>
           </nav>

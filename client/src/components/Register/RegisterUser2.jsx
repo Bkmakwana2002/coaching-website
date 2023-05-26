@@ -18,7 +18,6 @@ const RegisterUser2 = () => {
   const [DOB, setDOB] = useState(new Date());
   const [warning, setWarning]=useState("");
   const [profilepic, setProfilePic] = useState(null);
-  const [profilepicurl, setProfilePicURL] = useState(null);
 
   const batches = ['JEE', 'NEET', 'Foundation'];
 
@@ -42,27 +41,50 @@ const RegisterUser2 = () => {
         const profilePicRef = ref(storage, `profile-images/user2-images/${profilepic.name + uuidv4()}`)
         await uploadBytes(profilePicRef, profilepic).then((snapshot) => {
           console.log(snapshot)
-          getDownloadURL(snapshot.ref).then((URL) => {
-            setProfilePicURL(URL);
-          })
+          getDownloadURL(snapshot.ref).then(async(URL) => {
+            console.log(URL)
+          
+            
+            fetch("http://localhost:5000/api/User2/register/user2",
+            {
+              method:'post',
+              headers:{
+                'Content-Type':'application/json'
+              },
+              body:JSON.stringify({name, email, password, phone, DOB, pic:URL})
+
+            }).then(response=>{
+              response.json().then((data)=>{
+                if(data.success){
+                  localStorage.setItem("result", JSON.stringify({data, ...{userloggedin: 3, loggedin:true}})); // save data in localstorage
+                  navigate('/');
+                }else{
+                  setWarning(data.message);
+                }
+              })
+            }).catch((err)=>{
+              window.alert("Couldn't upload your profile picture")
+              console.log(err);
+            })
+
+            })
         }).catch((er)=>{
           window.alert("Couldn't upload your profile picture")
           console.log(er);
         })
-      }
-    
-
+      }else{          
         // Now check if the token is of admin or not
+        // console.log(profilepicurl)
         let result = await fetch("http://localhost:5000/api/User2/register/user2",
         {
           method:'post',
           headers:{
             'Content-Type':'application/json'
           },
-          body:JSON.stringify({name, email, password, phone, DOB, pic:profilepicurl})
-
+          body:JSON.stringify({name, email, password, phone, DOB})
+          
         });
-
+        
         result = await result.json();
         if(result.success){
           localStorage.setItem("data", JSON.stringify({result, ...{userloggedin: 3, loggedin:true}})); // save data in localstorage
@@ -70,7 +92,8 @@ const RegisterUser2 = () => {
         }else{
           setWarning(result.message);
         }
-    }
+      }
+      }
   }
 
 
