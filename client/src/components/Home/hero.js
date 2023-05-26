@@ -17,13 +17,13 @@ function Hero() {
       'content':'Courses for NEET',
       'iconName':GiCaduceus,
       'bgColor': 'bg-white'
-    },
-    {
-      'title':'Foundation',
-      'content':'Courses for NTSE and Olympiads',
-      'iconName':GiBrain,
-      'bgColor': 'bg-white'
     }
+    // {
+    //   'title':'Foundation',
+    //   'content':'Courses for NTSE and Olympiads',
+    //   'iconName':GiBrain,
+    //   'bgColor': 'bg-white'
+    // }
 
   ];
 

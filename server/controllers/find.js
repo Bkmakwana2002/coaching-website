@@ -10,8 +10,8 @@ exports.findTeachers = async (req, res) => {
         const data = await Teacher.find({ 
             "$or":
             [
-                { "name": { "$regex": key, "$options": "ig" } },
-                { "email": { "$regex": key, "$options": "ig" } },
+                { "name": { "$regex": key, "$options": "i" } },
+                { "email": { "$regex": key, "$options": "i" } },
             ]
          }).populate('name').populate('email').populate('phone').populate('_id').populate('subject').populate('pic')
         res.status(201).json({
@@ -29,11 +29,12 @@ exports.findTeachers = async (req, res) => {
 exports.findUsers = async (req, res) => {
     try {
         const key = req.body.key;
+        console.log(key)
         const data = await User.find({ 
             "$or":
             [
-                { "name": { "$regex": key, "$options": "ig" } },
-                { "email": { "$regex": key, "$options": "ig" } },
+                { "name": { "$regex": key, "$options": "i" } },
+                { "email": { "$regex": key, "$options": "i" } },
             ]
          }).populate('name').populate('email').populate('phone').populate('_id').populate('batch').populate('category').populate('enRoll').populate('pic')
         res.status(201).json({
@@ -54,8 +55,8 @@ exports.findUsers2 = async (req, res) => {
         const data = await User2.find({ 
             "$or":
             [
-                { "name": { "$regex": key, "$options": "ig" } },
-                { "email": { "$regex": key, "$options": "ig" } },
+                { "name": { "$regex": key, "$options": "i" } },
+                { "email": { "$regex": key, "$options": "i" } },
             ]
          }).populate('name').populate('email').populate('phone').populate('_id').populate('pic')
         res.status(201).json({

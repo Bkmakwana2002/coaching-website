@@ -9,7 +9,7 @@ function Card(props) {
   return (
     <div className="pt-24 my-4 w-9/12 md:w-1/4 justify-center items-center flex flex-col mx-auto">
         
-        <div className="px-4 w-full bg-white rounded-lg hover:drop-shadow-2xl ring-offset-transparent ring-black shadow-md dark:bg-sky-500 dark:border-gray-700">
+        <div className="px-4 w-full border-black bg-white rounded-lg hover:drop-shadow-2xl ring-offset-transparent ring-black shadow-md dark:bg-sky-500 dark:border-gray-700">
           
         <div className="flex flex-col items-center pb-10">
           

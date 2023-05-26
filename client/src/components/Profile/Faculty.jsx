@@ -33,7 +33,7 @@ const Faculty = () => {
   return (
     <div className='pt-32'>
         <div className='py-12 rounded h-fit  mx-auto'>
-            <img src={userinfo.userpic} alt="" className='w-48 mx-auto rounded m-2 '/>
+            <img src={userinfo.userpic} alt="" className='w-48 h-48 object-cover rounded-full mx-auto m-2 '/>
             <p className='text-2xl text-black font-inter'>
             {userinfo.name}
             </p> 

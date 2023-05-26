@@ -1,5 +1,7 @@
 const express = require('express')
 const cors = require('cors')
+const path = require('path')
+const dotenv = require('dotenv');
 const connectDB = require('./db')
 const SuperUserRoutes = require('./routes/SuperUserRoutes')
 const UserRoutes = require('./routes//userRoutes')
@@ -15,14 +17,16 @@ const payment = require('./routes/Payment')
 const searchRoutes = require('./routes/searchRoutes')
 const app = express()
 
+// env file configuration setup
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 app.use(express.json())
 app.use(cors())
-require("dotenv").config()
 connectDB()
 
-const PORT = 5000
+console.log(process.env.BACKEND_URL)
 
+const PORT = 5000
 
 app.use('/api/SuperUser',SuperUserRoutes)
 

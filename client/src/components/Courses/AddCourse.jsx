@@ -1,10 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
 import {AiOutlinePlus} from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
 import shortid from 'shortid'
 
 const AddCourse = () => {
-    
+
+        const navigate = useNavigate();    
         const [courseInfo, setCourseInfo ]= useState({
             title: null,
             Date: new Date(),
@@ -69,6 +71,7 @@ const AddCourse = () => {
             }).then(response=>{
                 response.json().then((data)=>{
                     console.log(data)
+                    navigate('/')
                 })
             })
 

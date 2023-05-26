@@ -62,13 +62,13 @@ const NavbarSuperUser = () => {
       {/* -----------------SIDE BAR--------------------- */}
               
        {open?
-       <div className={`z-40 fixed mr-4 w-64`}>
+       <div className={`transition ease-in-out delay-150 z-40 fixed mr-4 w-64 ${ open ? "translate-x-0" : "-translate-x-full"}`}>
          <aside
            class={`relative h-screen ease-in-out duration-1000`}
            aria-label="Sidebar"
          >
           
-           <div class={`overflow-y-auto h-screen py-4 px-3 bg-gray-50 dark:bg-blue-500 ${ open ? "translate-x-0" : "-translate-x-96"} ease-in duration-300`}>
+           <div class={`overflow-y-auto h-screen py-4 px-3 bg-gray-50 dark:bg-blue-500`}>
              <ul class="space-y-4">
 
               {/* Home */}
@@ -131,65 +131,6 @@ const NavbarSuperUser = () => {
                 </div>
                 </Link>
               </li>
-
-              {/* Make a test */}
-
-              <li>
-                <Link to="/addtest">
-                <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
-                >
-                  <MdOutlineCreateNewFolder />
-                  <span class="flex-1 text-2xl whitespace-nowrap">
-                    {open ? "Make a test" : ""}
-                  </span>
-                </div>
-                </Link>
-              </li>
-
-              {/* View Test */}
-
-              <li>
-                <Link to="/viewtest/admin">
-                <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
-                >
-                  <AiOutlineEye />
-                  <span class="flex-1 text-2xl whitespace-nowrap">
-                    {open ? "View tests" : ""}
-                  </span>
-                </div>
-                </Link>
-              </li>
-
-              {/* Upload Analysis */}
-              <li>
-                <Link to="/addanalysis">
-                <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
-                >
-                  <FiUpload />
-                  <span class="flex-1 text-2xl whitespace-nowrap">
-                    {open ? "Add analysis" : ""}
-                  </span>
-                </div>
-                </Link>
-              </li>
-
-              {/* Download Analysis */}
-              <li>
-                <Link to="/test-analysis-form">
-                <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
-                >
-                  <BsDownload />
-                  <span class="flex-1 text-xl whitespace-nowrap">
-                    {open ? "Download Analysis" : ""}
-                  </span>
-                </div>
-                </Link>
-              </li>
-
 
               {/*Image Options*/}
               <li>

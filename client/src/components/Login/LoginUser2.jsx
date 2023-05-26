@@ -32,7 +32,7 @@ const LoginUser2 = () => {
         navigate('/'); // navigate to home page after successful login
         localStorage.setItem("data", JSON.stringify({result, ...{userloggedin: 3, loggedin:true}})); // save data in localstorage
       }else{
-        setLogInWarning("Wrong Credentials"); // show warning for wrong credentials
+        setLogInWarning(result.message); // show warning for wrong credentials
       }
       
     }
