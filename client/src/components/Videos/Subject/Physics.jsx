@@ -22,7 +22,7 @@ const Physics = () => {
         const batch = JSON.parse(localStorage.getItem('data')).result.batch;
         const email = JSON.parse(localStorage.getItem('data')).result.email;
 
-        fetch(`http://localhost:5000/api/fetchVideos/faculty`, {
+        fetch(process.env.REACT_APP_API_URL+`/api/fetchVideos/faculty`, {
           method:'post',
           body:JSON.stringify({email, courseName, subject}),
           headers:{
@@ -76,7 +76,7 @@ const Physics = () => {
         console.log(courseName)
         const category = location.state.courseCategory;
 
-        fetch(`http://localhost:5000/api/fetchVideos/view-video`, {
+        fetch(process.env.REACT_APP_API_URL+`/api/fetchVideos/view-video`, {
           method:'post',
           body:JSON.stringify({subject, batch, category, courseName}),
           headers:{
@@ -128,7 +128,7 @@ const Physics = () => {
           
         const subject = "Physics";
         const batch = JSON.parse(localStorage.getItem('data')).result.batch;
-        fetch(`http://localhost:5000/api/fetchVideos/course-video`, {
+        fetch(process.env.REACT_APP_API_URL+`/api/fetchVideos/course-video`, {
           method:'post',
           body:JSON.stringify({subject, courseName}),
           headers:{

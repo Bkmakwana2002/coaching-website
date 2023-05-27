@@ -32,7 +32,7 @@ const Lectures = () => {
           })
 
           // once this is done, delete the video from the database
-          fetch(`http://localhost:5000/api/fetchVideos/delete-video`, {
+          fetch(process.env.REACT_APP_API_URL+`/api/fetchVideos/delete-video`, {
             method:'post',
             body:JSON.stringify({vidurl:url}),
             headers:{

@@ -5,14 +5,13 @@ import { Link, useLocation } from 'react-router-dom';
 import Lectures from './Lectures'
 import {AiOutlinePlus} from 'react-icons/ai';
 
-const Biology = (props) => {
+const Biology = () => {
   
   const [lectures, setLectures] = useState([]);
-  const {batch} = props;
   const [chapters, setChapters] = useState(()=>new Set());
   const [chapterArr, setChapterArr] = useState([]);
   const location = useLocation();
-  const {type, courseName, courseCategory} = location.state;
+  const {type, courseName, courseCategory} = location?.state;
   
   useEffect(()=>{
     const fetchVideosFaculty = async()=>{
@@ -22,7 +21,7 @@ const Biology = (props) => {
         const batch = JSON.parse(localStorage.getItem('data')).result.batch;
         const email = JSON.parse(localStorage.getItem('data')).result.email;
 
-        fetch(`http://localhost:5000/api/fetchVideos/faculty`, {
+        fetch(process.env.REACT_APP_API_URL+`/api/fetchVideos/faculty`, {
           method:'post',
           body:JSON.stringify({email, courseName, subject}),
           headers:{
@@ -75,7 +74,7 @@ const Biology = (props) => {
         const batch = JSON.parse(localStorage.getItem('data')).result.batch;
         const category = location.state.courseCategory;
 
-        fetch(`http://localhost:5000/api/fetchVideos/view-video`, {
+        fetch(process.env.REACT_APP_API_URL+`/api/fetchVideos/view-video`, {
           method:'post',
           body:JSON.stringify({subject, batch, category, courseName}),
           headers:{
@@ -128,7 +127,7 @@ const Biology = (props) => {
         const batch = JSON.parse(localStorage.getItem('data')).result.batch;
         const category = location.state.courseCategory;
 
-        fetch(`http://localhost:5000/api/fetchVideos/course-video`, {
+        fetch(process.env.REACT_APP_API_URL+`/api/fetchVideos/course-video`, {
           method:'post',
           body:JSON.stringify({courseName, subject}),
           headers:{
@@ -188,7 +187,7 @@ const Biology = (props) => {
     <main className='py-32 flex flex-col lg:grid-cols-3 lg:grid-rows-3 lg:mx-4 lg:grid gap-4 justify-center items-center'>
     {
       chapterArr.map((item, index)=>(
-        <Lectures key={index} chapter={item.chapter} user={type} lecture = {item.lecture} link={item.vidurl} subject="Physics" title={item.title} pic={item.pic} batch = {batch}/>
+        <Lectures key={index} lectures={lectures} chapter={item} user={type} subject="Physics" />
       ))
     }
 

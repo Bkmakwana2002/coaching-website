@@ -13,7 +13,7 @@ const ShowCoursesCategory = () => {
             const category = data.result.category;
             const batch = data.result.batch;
 
-            let result = await fetch("http://localhost:5000/api/Courses/fetch-course-with-category",
+            let result = await fetch(process.env.REACT_APP_API_URL+"/api/Courses/fetch-course-with-category",
             {
                 method:'post',
                 body:JSON.stringify({category, batch}),

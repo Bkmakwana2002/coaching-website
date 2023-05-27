@@ -21,7 +21,7 @@ const AddSliderImages = () => {
         console.log(snapshot)
         getDownloadURL(snapshot.ref).then((URL) => {
 
-            fetch("http://localhost:5000/api/images/add-slider-images", {
+            fetch(process.env.REACT_APP_API_URL+"/api/images/add-slider-images", {
                 method:'post',
                 body:JSON.stringify({url:URL}),
                 headers:{

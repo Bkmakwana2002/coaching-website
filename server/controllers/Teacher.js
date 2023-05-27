@@ -84,11 +84,11 @@ exports.authTeacher = async (req, res) => {
 exports.removeFaculty = async (req, res) => {  
     try {
         const email = req.body.email
-        const result = await Teacher.findOneAndDelete({email:email})
+        const result = await Teacher.findOneAndDelete({email:email});
         if (result) {
             return res.status(201).json({result:result, success:true,message: 'User Removed' })
         } else {
-            return res.status(404).json({success:false, message: 'User Not Found' })
+            return res.status(404).json({success:false,   message: 'User Not Found' })
         }
     } catch (error) {
         return res.status(500).json({ message: error.message })

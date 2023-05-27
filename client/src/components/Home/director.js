@@ -9,7 +9,7 @@ function Director() {
     const getData = async(e)=>{
   
       
-      fetch('http://localhost:5000/api/images/get-teacher-images', {
+      fetch(process.env.REACT_APP_API_URL+'/api/images/get-teacher-images', {
           method:'get',
           headers:{
               'Content-Type':'application/json'

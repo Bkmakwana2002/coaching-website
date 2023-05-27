@@ -15,7 +15,7 @@ const ViewFaculty = () => {
         let localdata = localStorage.getItem("data");
         localdata = JSON.parse(localdata)
         
-        fetch(`http://localhost:5000/api/fetchVideos/faculty`, {
+        fetch(process.env.REACT_APP_API_URL+`/api/fetchVideos/faculty`, {
         method:'post',
         body:JSON.stringify({"email":localdata.result.email}),
         headers:{

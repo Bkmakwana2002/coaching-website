@@ -1,6 +1,8 @@
+import { deleteObject, ref } from 'firebase/storage'
 import React, { useCallback, useEffect, useState } from 'react'
 import {AiOutlineSearch} from 'react-icons/ai'
 import shortid from 'shortid'
+import { storage } from '../../firebase'
 
 const DeleteUser = () => {
   const [User, setUser] = useState([])
@@ -69,9 +71,13 @@ const DeleteUser = () => {
       },
       body:JSON.stringify({email:email, enRoll:enRoll})
     }).then(response=>{
-      response.json().then((data)=>{
+      response.json().then(async (data)=>{
         if(data.success){
           setError(null);
+          if(data.result.pic.includes('firebasestorage')){
+            const picRef = ref(storage, data.result.pic);
+            await deleteObject(picRef);
+          }
           window.location.reload(true)
         }else{
           setError(data.message);
