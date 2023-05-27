@@ -72,7 +72,7 @@ const AddCourse = () => {
             }).then(response=>{
                 response.json().then((data)=>{
                     console.log(data)
-                    navigate('/')
+                    navigate('/faculty/courses')
                 })
             }).catch(err=>{
                 setErr(err);
