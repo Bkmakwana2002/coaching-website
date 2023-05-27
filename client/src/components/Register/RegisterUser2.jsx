@@ -7,19 +7,15 @@ import { v4 as uuidv4 } from 'uuid';
 
 const RegisterUser2 = () => {
 
-  const role = "Student";
-
   const [name, setUserName] = useState('');
   const [email, setUserEmail] = useState('');
   const [password, setUserPassword] = useState('');
   const [confirmeduserpassword, setConfirmedUserPassword] = useState('');
   const [phone, setPhoneNumber] = useState(0);
-  const [category, setCategory] = useState(0);
   const [DOB, setDOB] = useState(new Date());
   const [warning, setWarning]=useState("");
   const [profilepic, setProfilePic] = useState(null);
 
-  const batches = ['JEE', 'NEET', 'Foundation'];
 
   const handleDOB = (event)=>{
     console.log(event.target.value);
@@ -45,7 +41,7 @@ const RegisterUser2 = () => {
             console.log(URL)
           
             
-            fetch("http://localhost:5000/api/User2/register/user2",
+            fetch(process.env.REACT_APP_API_URL+"/api/User2/register/user2",
             {
               method:'post',
               headers:{
@@ -59,7 +55,7 @@ const RegisterUser2 = () => {
                   localStorage.setItem("result", JSON.stringify({data, ...{userloggedin: 3, loggedin:true}})); // save data in localstorage
                   navigate('/');
                 }else{
-                  setWarning(data.message);
+                  setWarning(data?.message);
                 }
               })
             }).catch((err)=>{
@@ -74,8 +70,7 @@ const RegisterUser2 = () => {
         })
       }else{          
         // Now check if the token is of admin or not
-        // console.log(profilepicurl)
-        let result = await fetch("http://localhost:5000/api/User2/register/user2",
+        let result = await fetch(process.env.REACT_APP_API_URL+"/api/User2/register/user2",
         {
           method:'post',
           headers:{
@@ -90,7 +85,7 @@ const RegisterUser2 = () => {
           localStorage.setItem("data", JSON.stringify({result, ...{userloggedin: 3, loggedin:true}})); // save data in localstorage
           navigate('/');
         }else{
-          setWarning(result.message);
+          setWarning(result?.message);
         }
       }
       }
@@ -100,16 +95,31 @@ const RegisterUser2 = () => {
   return (
     <form onSubmit={AddStudent}>
       <div className="bg-grey-lighter min-h-screen flex flex-col ">
-          <div className="container w-full lg:w-1/3 mx-auto flex-1 my-24 flex flex-col items-center justify-center px-2">
+          <div className="container w-full lg:w-1/3 mx-auto flex-1 my-8 flex flex-col items-center justify-center px-2">
             <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
               <h1 className="mb-8 text-3xl text-center">Sign up</h1>
 
               {/* for getting image upload */}
 
-              <div className='p-2 m-2'>
-                <label htmlFor="file" className='text-left mr-64 font-bold text-gray-500'>Profile Photo </label>
-                <input onChange={(e)=>{setProfilePic(e.target.files[0])}} id="file-upload" type="file" accept='image/*'/>
+              <div className="p-2 m-2">
+                <label htmlFor="file" className="text-left mr-4 font-bold text-gray-500">
+                  Profile Photo
+                </label>
+                <input
+                  onChange={(e) => { setProfilePic(e.target.files[0]) }}
+                  id="file-upload"
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                />
+                <label
+                  htmlFor="file-upload"
+                  className="inline-block py-2 px-4 bg-blue-500 text-white font-bold rounded cursor-pointer hover:bg-blue-600"
+                >
+                  {profilepic?.name || "Choose File"}
+                </label>
               </div>
+
 
               {/* for Username  */}
               <input required type="text" onChange={(event)=>{setUserName(event.target.value)}} className="block border border-grey-light w-full p-3 rounded mb-4" name="fullname" placeholder="Full Name" />
@@ -122,7 +132,7 @@ const RegisterUser2 = () => {
               <input required onChange={handleDOB} type="date" className="block border border-grey-light w-full p-3 rounded mb-4" name="date" placeholder="Date of Birth" />
 
               {/* for Phone Number  */}
-              <input required onChange={(event)=>{setPhoneNumber(event.target.value)}} type="text" className="block border border-grey-light w-full p-3 rounded mb-4" name="phone" placeholder="Phone" />
+              <input required onChange={(event)=>{setPhoneNumber(event.target.value)}} type="tel" className="block border border-grey-light w-full p-3 rounded mb-4" name="phone" placeholder="Phone" pattern="[0-9]{10}"/>
 
               {/* Password */}
               <input required onChange={(event)=>{setUserPassword(event.target.value)}} type="password" className="block border border-grey-light w-full p-3 rounded mb-4" name="password" placeholder="Password" />

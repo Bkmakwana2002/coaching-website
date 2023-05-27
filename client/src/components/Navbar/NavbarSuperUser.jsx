@@ -64,21 +64,21 @@ const NavbarSuperUser = () => {
        {open?
        <div className={`transition ease-in-out delay-150 z-40 fixed mr-4 w-64 ${ open ? "translate-x-0" : "-translate-x-full"}`}>
          <aside
-           class={`relative h-screen ease-in-out duration-1000`}
+           className={`relative h-screen ease-in-out duration-1000`}
            aria-label="Sidebar"
          >
           
-           <div class={`overflow-y-auto h-screen py-4 px-3 bg-gray-50 dark:bg-blue-500`}>
-             <ul class="space-y-4">
+           <div className={`overflow-y-auto h-screen py-4 px-3 bg-gray-50 dark:bg-blue-500`}>
+             <ul className="space-y-4">
 
               {/* Home */}
               <li>
                  <Link to='/' onClick={()=>{setOpen(!open)}}>
                  <div
-                   class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
+                   className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
                  >
                    <FaHome />
-                   <span class="flex-1 text-2xl whitespace-nowrap">
+                   <span className="flex-1 text-2xl whitespace-nowrap">
                      {open ? "Home" : ""}
                    </span>
                  </div>
@@ -93,10 +93,10 @@ const NavbarSuperUser = () => {
                 // if logged in
                 <Link to="/" onClick={handleLogoutBtn}>
                 <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
                 >
                   <FiLogIn />
-                  <span class="flex-1 text-2xl whitespace-nowrap">
+                  <span className="flex-1 text-2xl whitespace-nowrap">
                     {open ? "Logout" : ""}
                   </span>
                 </div>
@@ -105,10 +105,10 @@ const NavbarSuperUser = () => {
                 // if not logged in already
                 <Link to = "/login" onClick = {()=>{setOpen(!open)}}>
                 <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
                 >
                   <FiLogIn />
-                  <span class="flex-1 text-2xl whitespace-nowrap">
+                  <span className="flex-1 text-2xl whitespace-nowrap">
                     {open ? "Login" : ""}
                   </span>
                 </div>
@@ -122,10 +122,10 @@ const NavbarSuperUser = () => {
               <li>
               <Link to="/admin" onClick={()=>{setOpen(!open)}}>
                 <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
                 >
                   <BiUserCircle />
-                  <span class="flex-1 text-2xl whitespace-nowrap">
+                  <span className="flex-1 text-2xl whitespace-nowrap">
                     {open ? "Update Users" : ""}
                   </span>
                 </div>
@@ -136,10 +136,10 @@ const NavbarSuperUser = () => {
               <li>
                 <Link to="/addimages">
                 <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
                 >
                   <FiImage />
-                  <span class="flex-1 text-xl whitespace-nowrap">
+                  <span className="flex-1 text-xl whitespace-nowrap">
                     {open ? "Add/Remove Images" : ""}
                   </span>
                 </div>

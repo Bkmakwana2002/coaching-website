@@ -29,7 +29,7 @@ function Contact(props) {
         event.preventDefault();
         setProgress(10);
 
-        let result = await fetch("http://localhost:5000/api/visitor/message",{
+        let result = await fetch(process.env.REACT_APP_API_URL+"/api/visitor/message",{
             method:'post',
             headers:{
                 'Content-Type':'application/json'
@@ -224,7 +224,7 @@ function Contact(props) {
                     <textarea onChange={(event)=>{setMessage(event.target.value)}}
                             rows="6"
                             placeholder="Your Message"
-                            class="
+                            className="
                             w-2/3
                             mx-auto
                             rounded

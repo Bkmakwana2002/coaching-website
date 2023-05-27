@@ -10,7 +10,7 @@ const ShowCourses = () => {
         const [courses, setCourses] = useState([]);
 
         const fetchCourses = async()=>{
-            let result = await fetch("http://localhost:5000/api/Courses/fetch-course",
+            let result = await fetch(process.env.REACT_APP_API_URL+"/api/Courses/fetch-course",
             {
                 method:'get',
                 headers:{

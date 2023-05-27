@@ -1,5 +1,7 @@
+import { deleteObject, ref } from 'firebase/storage'
 import React, { useCallback, useEffect, useState } from 'react'
 import {AiOutlineSearch} from 'react-icons/ai'
+import { storage } from '../../firebase'
 
 const DeleteFaculty = () => {
   const [User, setUser] = useState([])
@@ -60,17 +62,21 @@ const DeleteFaculty = () => {
     }
 
     // get data from the database
-    fetch(`http://localhost:5000/api/Teach/remove`, {
+    fetch(process.env.REACT_APP_API_URL+`/api/Teach/remove`, {
       method:'delete',
       headers:{
         'Content-Type':'application/json'
       },
       body:JSON.stringify({email:email})
     }).then(response=>{
-      response.json().then((data)=>{
+      response.json().then(async (data)=>{
         if(data.success){
           setError(null);
-          window.location.reload(true)
+          if(data.result.pic.includes('firebasestorage')){
+            const picRef = ref(storage, data.result.pic);
+            await deleteObject(picRef);
+          }
+          window.location.reload(true);
         }else{
           window.alert(data.message)
           setError(data.message);
@@ -106,31 +112,31 @@ const DeleteFaculty = () => {
       {
         User.length > 0 ? User.map((user) => {
           return (
-            <div class="m-4 p-2">
+            <div className="m-4 p-2">
 
-                <div class="max-w-xs">
-                    <div class="bg-white shadow-xl rounded-lg py-3">
-                        <div class="photo-wrapper p-2">
-                            <img class="w-32 h-32 rounded-full mx-auto" src={user.pic} alt='student'/>
+                <div className="max-w-xs">
+                    <div className="bg-white shadow-xl rounded-lg py-3">
+                        <div className="photo-wrapper p-2">
+                            <img className="w-32 h-32 rounded-full mx-auto" src={user.pic} alt='student'/>
                         </div>
-                        <div class="p-2">
-                            <h3 class="text-center text-xl text-gray-900 font-medium leading-8">{user.name}</h3>
-                            <div class="text-center text-gray-400 text-xs font-semibold">
+                        <div className="p-2">
+                            <h3 className="text-center text-xl text-gray-900 font-medium leading-8">{user.name}</h3>
+                            <div className="text-center text-gray-400 text-xs font-semibold">
                                 <p>Faculty</p>
                             </div>
-                            <table class="text-xs my-3">
+                            <table className="text-xs my-3">
                                 <tbody>
                                 <tr>
-                                    <td class="px-2 py-2 text-gray-500 font-semibold">Email</td>
-                                    <td class="px-2 py-2">{user.email}</td>
+                                    <td className="px-2 py-2 text-gray-500 font-semibold">Email</td>
+                                    <td className="px-2 py-2">{user.email}</td>
                                 </tr>
                                 <tr>
-                                    <td class="px-2 py-2 text-gray-500 font-semibold">Phone</td>
-                                    <td class="px-2 py-2">{user.phone}</td>
+                                    <td className="px-2 py-2 text-gray-500 font-semibold">Phone</td>
+                                    <td className="px-2 py-2">{user.phone}</td>
                                 </tr>
                                 <tr>
-                                    <td class="px-2 py-2 text-gray-500 font-semibold">Subject</td>
-                                    <td class="px-2 py-2">{user.subject}</td>
+                                    <td className="px-2 py-2 text-gray-500 font-semibold">Subject</td>
+                                    <td className="px-2 py-2">{user.subject}</td>
                                 </tr>
                             </tbody></table>
 

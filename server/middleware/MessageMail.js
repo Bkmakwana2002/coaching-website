@@ -6,20 +6,20 @@ exports.MessageMailer = async (req, res)=>{
         const {name, senderEmail, phone, visitorMessage } = req.body;
 
         const transporter = nodemailer.createTransport({
-            service:"gmail",
+            service:process.env.EMAIL_SERVICE_NAME,
             auth:{
-                user: "vultureinstitute123@gmail.com",
-                pass:"xcdczkrnkmefuhqp" // to be hashed or done something with it to secure it
+                user: process.env.ORGANIZATION_EMAIL,
+                pass:process.env.ORGANIZATION_GMAIL_SECRET_KEY // to be hashed or done something with it to secure it
             },
             secure:true,
-            host:'smtp.gmail.com',
+            host:process.env.EMAIL_HOST_NAME,
             port: 465
 
         })
 
         const mailInfo = await transporter.sendMail({
-            from:'vultureinstitute123@gmail.com',
-            to:'vultureinstitute123@gmail.com',
+            from:process.env.ORGANIZATION_EMAIL,
+            to:process.env.ORGANIZATION_EMAIL,
             subject:`New Message from ${senderEmail}, Website Visitor`,
             text:'This is the mail from contact page',
             html:`<p>Message from user: <h1>${name}</h1> </br> Email: <h1>${senderEmail}</h1> </br> Phone: <h1>${phone}</h1> </br> Message: <h2>${visitorMessage}</h2></p>`

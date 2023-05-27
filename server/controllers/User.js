@@ -35,7 +35,6 @@ exports.registerUser = async (req, res) => {
                 _id: user._id,
                 name: user.name,
                 email: user.email,
-                role: user.role,
                 enRoll: user.enRoll,
                 batch: user.batch,
                 year: user.year,

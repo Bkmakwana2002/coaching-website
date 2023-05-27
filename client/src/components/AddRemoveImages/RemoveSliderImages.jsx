@@ -16,7 +16,7 @@ const RemoveSliderImages = ({setProgress}) => {
 
   
   const getData = ()=>{
-    fetch(`http://localhost:5000/api/images/slider-images`, {
+    fetch(process.env.REACT_APP_API_URL+`/api/images/slider-images`, {
       method:'get',
       headers:{
         'Content-Type':'application/json'
@@ -40,7 +40,7 @@ const RemoveSliderImages = ({setProgress}) => {
       await deleteObject(ref(storage, url));
 
       // delete the image from the database
-      fetch(`http://localhost:5000/api/images/remove-slider-images`, {
+      fetch(process.env.REACT_APP_API_URL+`/api/images/remove-slider-images`, {
         method:'delete',
         headers:{
           'Content-Type':'application/json'

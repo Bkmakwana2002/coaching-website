@@ -1,6 +1,8 @@
+import { deleteObject, ref } from 'firebase/storage'
 import React, { useCallback, useEffect, useState } from 'react'
 import {AiOutlineSearch} from 'react-icons/ai'
 import shortid from 'shortid'
+import { storage } from '../../firebase'
 
 const DeleteUser = () => {
   const [User, setUser] = useState([])
@@ -62,16 +64,20 @@ const DeleteUser = () => {
     }
 
     // get data from the database
-    fetch(`http://localhost:5000/api/User/remove`, {
+    fetch(process.env.REACT_APP_API_URL+`/api/User/remove`, {
       method:'delete',
       headers:{
         'Content-Type':'application/json'
       },
       body:JSON.stringify({email:email, enRoll:enRoll})
     }).then(response=>{
-      response.json().then((data)=>{
+      response.json().then(async (data)=>{
         if(data.success){
           setError(null);
+          if(data.result.pic.includes('firebasestorage')){
+            const picRef = ref(storage, data.result.pic);
+            await deleteObject(picRef);
+          }
           window.location.reload(true)
         }else{
           setError(data.message);

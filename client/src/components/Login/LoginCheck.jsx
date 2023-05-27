@@ -8,7 +8,7 @@ const LoginCheck = () => {
 
 
   return (
-    <section className="text-black md:pt-12 mt-20 lg:pt-12 bg-gray-100 body-font">
+    <section className="text-black md:pt-2 mt-2 lg:pt-2 bg-gray-100 body-font">
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-wrap -m-4">
           <div className="p-4 md:w-1/3 lg:w-1/3 w-full">
@@ -17,7 +17,7 @@ const LoginCheck = () => {
               <div className="p-6 space-y-10">
                 <h2 className="tracking-widest text-2xl lg:text-4xl title-font font-medium text-black mb-1">Are you a Student ?</h2>
                 <div className="flex items-center flex-wrap justify-center">
-                  <Link to='/login/usertype' className="hover:cursor-pointer hover:text-white hover:bg-blue-900 duration-300 rounded-md p-2 text-blue-900 inline-flex items-center md:mb-2 lg:mb-0 text-2xl">Login
+                  <Link to={'/login/usertype'} className="hover:cursor-pointer hover:text-white hover:bg-blue-900 duration-300 rounded-md p-2 text-blue-900 inline-flex items-center md:mb-2 lg:mb-0 text-2xl">Login
                     <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M5 12h14"></path>
                       <path d="M12 5l7 7-7 7"></path>
@@ -33,7 +33,7 @@ const LoginCheck = () => {
               <div className="p-6 space-y-10">
                 <h2 className="tracking-widest text-2xl lg:text-4xl title-font font-medium text-black mb-1">Are you a Teacher ?</h2>
                 <div className="flex items-center flex-wrap justify-center">
-                  <Link to='/login/teacher' className="hover:cursor-pointer hover:text-white hover:bg-blue-900 duration-300 rounded-md p-2 text-blue-900 inline-flex items-center md:mb-2 lg:mb-0 text-2xl">Login
+                  <Link to={'/login/teacher'} className="hover:cursor-pointer hover:text-white hover:bg-blue-900 duration-300 rounded-md p-2 text-blue-900 inline-flex items-center md:mb-2 lg:mb-0 text-2xl">Login
                     <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M5 12h14"></path>
                       <path d="M12 5l7 7-7 7"></path>

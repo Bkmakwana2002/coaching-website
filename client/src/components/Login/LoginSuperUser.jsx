@@ -14,7 +14,7 @@ function LoginSuperUser() {
   const navigate = useNavigate();
 
   const handleLogin = async() => {
-    let result = await fetch("http://localhost:5000/api/SuperUser/login/admin", {
+    let result = await fetch(process.env.REACT_APP_API_URL+"/api/SuperUser/login/admin", {
       method:'post',
       body: JSON.stringify({email, password}),
       headers:{

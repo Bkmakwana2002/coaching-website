@@ -64,21 +64,21 @@ const NavbarFaculty = () => {
              
        <div className={`transition ease-in-out delay-150 z-40 fixed mr-4 w-64 ${ open ? "translate-x-0" : "-translate-x-full"}`}>
          <aside
-           class={`relative h-screen ease-in-out duration-1000`}
+           className={`relative h-screen ease-in-out duration-1000`}
            aria-label="Sidebar"
          >
           
-           <div class={`overflow-y-auto h-screen py-4 px-3 bg-gray-50 dark:bg-blue-500 `}>
-             <ul class="space-y-4">
+           <div className={`overflow-y-auto h-screen py-4 px-3 bg-gray-50 dark:bg-blue-500 `}>
+             <ul className="space-y-4">
 
               {/* Home */}
               <li>
                  <Link to='/' onClick={()=>{setOpen(!open)}}>
                  <div
-                   class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
+                   className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
                  >
                    <FaHome />
-                   <span class="flex-1 text-xl whitespace-nowrap">
+                   <span className="flex-1 text-xl whitespace-nowrap">
                      {open ? "Home" : ""}
                    </span>
                  </div>
@@ -88,10 +88,10 @@ const NavbarFaculty = () => {
               <li>
                 <Link to='/profile/faculty' onClick={()=>{setOpen(!open)}}>
                 <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
                 >
                   <BsFillPersonFill />
-                  <span class="flex-1 text-xl whitespace-nowrap">
+                  <span className="flex-1 text-xl whitespace-nowrap">
                     {open ? "Profile" : ""}
                   </span>
                 </div>
@@ -101,10 +101,10 @@ const NavbarFaculty = () => {
                <li>
                  <Link to='/Courses' onClick={()=>{setOpen(!open)}}>
                  <div
-                   class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
+                   className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
                  >
                    <FaBookReader />
-                   <span class="flex-1 text-xl whitespace-nowrap">
+                   <span className="flex-1 text-xl whitespace-nowrap">
                      {open ? "Courses" : ""}
                    </span>
                  </div>
@@ -114,10 +114,10 @@ const NavbarFaculty = () => {
                <li>
                  <Link to="/gallery" onClick={()=>{setOpen(!open)}}>
                  <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
                 >
                   <IoMdPhotos />
-                  <span class="flex-1 text-xl whitespace-nowrap">
+                  <span className="flex-1 text-xl whitespace-nowrap">
                     {open ? "Gallery" : ""}
                   </span>
                 </div>
@@ -128,10 +128,10 @@ const NavbarFaculty = () => {
               <li>
                 <Link to="/faculty/courses" onClick={()=>{setOpen(!open)}}>
                 <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
                 >
                   <AiOutlinePlayCircle />
-                  <span class="flex-1 text-xl whitespace-nowrap">
+                  <span className="flex-1 text-xl whitespace-nowrap">
                     {open ? "Courses" : ""}
                   </span>
                 </div>
@@ -170,10 +170,10 @@ const NavbarFaculty = () => {
               <li>
                 <Link to="/admission" onClick={()=>{setOpen(!open)}}>
                 <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
                 >
                   <BsFillFilePersonFill />
-                  <span class="flex-1 text-xl whitespace-nowrap">
+                  <span className="flex-1 text-xl whitespace-nowrap">
                     {open ? "Admission" : ""}
                   </span>
                 </div>
@@ -187,10 +187,10 @@ const NavbarFaculty = () => {
                 // if not logged in
                 <Link to="/" onClick={handleLogoutBtn}>
                 <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
                 >
                   <FiLogIn />
-                  <span class="flex-1 text-xl whitespace-nowrap">
+                  <span className="flex-1 text-xl whitespace-nowrap">
                     {open ? "Logout" : ""}
                   </span>
                 </div>
@@ -199,10 +199,10 @@ const NavbarFaculty = () => {
                 // if not logged in already
                 <Link to = "/login" onClick = {()=>{setOpen(!open)}}>
                 <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
                 >
                   <FiLogIn />
-                  <span class="flex-1 text-xl whitespace-nowrap">
+                  <span className="flex-1 text-xl whitespace-nowrap">
                     {open ? "Login" : ""}
                   </span>
                 </div>
@@ -216,10 +216,10 @@ const NavbarFaculty = () => {
               <li>
                 <Link to="/upload-video" onClick={()=>{setOpen(!open)}}>
                 <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
                 >
                   <FiUpload />
-                  <span class="flex-1 text-xl whitespace-nowrap">
+                  <span className="flex-1 text-xl whitespace-nowrap">
                     {open ? "Upload Video" : ""}
                   </span>
                 </div>
@@ -230,10 +230,10 @@ const NavbarFaculty = () => {
               <li>
                 <Link to="/about" onClick={()=>{setOpen(!open)}}>
                 <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
                 >
                   <HiInformationCircle />
-                  <span class="flex-1 text-xl whitespace-nowrap">
+                  <span className="flex-1 text-xl whitespace-nowrap">
                     {open ? "About Us" : ""}
                   </span>
                 </div>
@@ -244,10 +244,10 @@ const NavbarFaculty = () => {
               <li>
                 <Link to="/contact" onClick={()=>{setOpen(!open)}}>
                 <div
-                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
+                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
                 >
                   <MdContactPage />
-                  <span class="flex-1 text-xl whitespace-nowrap">
+                  <span className="flex-1 text-xl whitespace-nowrap">
                     {open ? "Contact Us" : ""}
                   </span>
                 </div>

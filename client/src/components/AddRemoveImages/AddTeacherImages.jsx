@@ -38,7 +38,7 @@ const AddTeacherImages = () => {
         await uploadBytes(teacherIMGref, image).then((snap)=>{
             getDownloadURL(snap.ref).then((URL)=>{
                 // uploading to database
-                fetch('http://localhost:5000/api/images/add-teacher-images', {
+                fetch(process.env.REACT_APP_API_URL+'/api/images/add-teacher-images', {
                     method:'post',
                     body:JSON.stringify({url:URL, tName:name, exp: exp}),
                     headers:{

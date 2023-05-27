@@ -12,7 +12,7 @@ const ShowCoursesUser2 = () => {
         const fetchCourses = async()=>{
             const email = JSON.parse(localStorage.getItem('data')).result.email;
             
-            let result = await fetch("http://localhost:5000/api/Courses/fetch-course-with-user2",
+            let result = await fetch(process.env.REACT_APP_API_URL+"/api/Courses/fetch-course-with-user2",
             {
                 method:'post',
                 body:JSON.stringify({email}),

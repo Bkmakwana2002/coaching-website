@@ -15,7 +15,7 @@ const Superprotect = asyncHandler(async (req, res, next) => {
             token = req.headers.authorization.split(" ")[1];
 
             //decoded token id
-            const decoded = jwt.verify(token, "process.env.secret")
+            const decoded = jwt.verify(token, process.env.AUTHORIZATION_SECRET_KEY)
             
             let user = await SuperUser.findById(decoded.id).select("-password") 
             if(user === null)
