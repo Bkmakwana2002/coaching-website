@@ -14,7 +14,7 @@ const LoginUser2 = () => {
     const handleUser2Login = async (e)=>{
         e.preventDefault();
 
-      let result = await fetch("http://localhost:5000/api/User2/login/user2",
+      let result = await fetch(process.env.REACT_APP_API_URL+"/api/User2/login/user2",
         {
           method:'post',
           headers: {

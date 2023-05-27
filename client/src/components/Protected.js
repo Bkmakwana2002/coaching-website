@@ -10,8 +10,8 @@ const Protected = (props) => {
 
   // if the type is not user2, then it will automatically be normal user
   if(location?.state?.type){
-    console.log(location.state.type)
-    console.log(user)
+    // console.log(location.state.type)
+    // console.log("USER ", user)
     type = location.state.type;
   }
   // const {type} = location?.state?.type ? location.state.type : {type:undefined};
@@ -24,7 +24,7 @@ const Protected = (props) => {
       const isAuth = async()=>{
         if(type==="user2" && user==="student"){
           const Token = JSON.parse(localStorage.getItem("data"))?.result.token;
-            fetch(`http://localhost:5000/api/auth/user2`, {
+            fetch(process.env.REACT_APP_API_URL+`/api/auth/user2`, {
                 method:'get',
                 headers:{
                     'Content-Type':'application/json',
@@ -44,7 +44,7 @@ const Protected = (props) => {
             setProgress(0);
         }else{          
           const Token = JSON.parse(localStorage.getItem("data"))?.result.token;
-            fetch(`http://localhost:5000/api/auth/${user}`, {
+            fetch(process.env.REACT_APP_API_URL+`/api/auth/${user}`, {
                 method:'get',
                 headers:{
                     'Content-Type':'application/json',

@@ -22,6 +22,7 @@ const Faculty = () => {
             }))
             // console.log(data.result.email)
             // console.log(userinfo)
+            console.log(userinfo)
             
         }
         findData();

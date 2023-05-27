@@ -18,7 +18,7 @@ const searchRoutes = require('./routes/searchRoutes')
 const app = express()
 
 // env file configuration setup
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+dotenv.config({ path: path.resolve(__dirname, './.env') });
 
 app.use(express.json())
 app.use(cors())

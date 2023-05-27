@@ -14,6 +14,7 @@ exports.login = async (req, res) => {
                 email: superUser.email,
                 token: token,
             });
+            console.log("NICEE")
         }else{
             res.status(401);
             throw new Error("Wrong Email or Password");

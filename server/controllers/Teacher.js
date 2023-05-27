@@ -11,6 +11,8 @@ exports.registerTeacher = async (req, res) => {
             return res.status(404).send({ success: false, message: 'teacher already exists' })
         }
 
+        console.log(pic)
+
         teach = await Teacher.create({
             name,
             email,

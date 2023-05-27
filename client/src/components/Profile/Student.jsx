@@ -13,11 +13,6 @@ const Student = () => {
         batch:"Fetching..."
     })
 
-
-
-    
-
-
     useEffect(()=>{
         const findData = ()=>{
             let data = localStorage.getItem("data");

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import shortid from 'shortid'
 
 const AddCourse = () => {
+    const [err, setErr] = "";
 
         const navigate = useNavigate();    
         const [courseInfo, setCourseInfo ]= useState({
@@ -61,7 +62,7 @@ const AddCourse = () => {
 
             setCourseInfo(courseInfo)
 
-            fetch('http://localhost:5000/api/Courses/add-course',
+            fetch(process.env.REACT_APP_API_URL+'/api/Courses/add-course',
             {
                 method:'post',
                 body:JSON.stringify(courseInfo),
@@ -73,6 +74,8 @@ const AddCourse = () => {
                     console.log(data)
                     navigate('/')
                 })
+            }).catch(err=>{
+                setErr(err);
             })
 
         }
@@ -82,6 +85,7 @@ const AddCourse = () => {
             <form onSubmit={createCourse} className='border border-black bg-[#FFF7E9] rounded w-fit px-8 py-8 mb-8 select-none mx-auto'>
                 <div className='flex flex-col justify-center items-center'>
 
+                    <label htmlFor="error">{err}</label>
 
                     <div class="flex justify-center">
                         <div class="mb-3 xl:w-96">

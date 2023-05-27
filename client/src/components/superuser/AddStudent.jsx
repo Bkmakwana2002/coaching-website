@@ -1,10 +1,11 @@
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { storage } from '../../firebase';
+import { v4 as uuidv4 } from 'uuid';
 
 const AddStudent = () => {
-
-  const role = "Student";
 
   const [batch, setBatch] = useState('JEE');
   const [name, setUserName] = useState('');
@@ -17,8 +18,9 @@ const AddStudent = () => {
   const [category, setCategory] = useState(0);
   const [year, setYear] = useState(0);
   const [DOB, setDOB] = useState(new Date());
-  const [warning, setWarning]=useState("");
-  
+  const [warning, setWarning]=useState("");  
+  const [profilepic, setProfilePic] = useState(null);
+
   const batches = ['JEE', 'NEET', 'Foundation'];
 
   const handleDOB = (event)=>{
@@ -42,15 +44,29 @@ const AddStudent = () => {
     // check if the password and confirmed password are same of not
     if(password===confirmeduserpassword && password.length >= 5){
 
+        let URL = "";
+        let body = "";
+        if(profilepic){
+          const profilePicRef = ref(storage, `profile-images/user-images/${profilepic.name + uuidv4()}`);
+          const snapshot = await uploadBytes(profilePicRef, profilepic);          
+          URL = await getDownloadURL(snapshot.ref);
+
+          // update body to send to backend
+          body = JSON.stringify({name, email, password, phone, enRoll, batch, year, fatherName, DOB, category, pic:URL})
+        }else{
+          // update body to send to backend
+          body = JSON.stringify({name, email, password, phone, enRoll, batch, year, fatherName, DOB, category})
+        }
+
         // Now check if the token is of admin or not
-        let result = await fetch("http://localhost:5000/api/User/register/user",
+        let result = await fetch(process.env.REACT_APP_API_URL+"/api/User/register/user",
         {
           method:'post',
           headers:{
             'Content-Type':'application/json',
             'authorization':'Bearer '+Token
           },
-          body:JSON.stringify({name, email, password, phone, enRoll, batch, year, role, fatherName, DOB, category})
+          body:body
 
         });
 
@@ -71,11 +87,31 @@ const AddStudent = () => {
             <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
               <h1 className="mb-8 text-3xl text-center">Sign up</h1>
 
+              <div className="p-2 m-2">
+                <label htmlFor="file" className="text-left mr-4 font-bold text-gray-500">
+                  Profile Photo
+                </label>
+                <input
+                  onChange={(e) => { setProfilePic(e.target.files[0]) }}
+                  id="file-upload"
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                />
+                <label
+                  htmlFor="file-upload"
+                  className="inline-block py-2 px-4 bg-blue-500 text-white font-bold rounded cursor-pointer hover:bg-blue-600"
+                >
+                  {profilepic?.name || "Choose File"}
+                </label>
+              </div>
+
+
               {/* for selecting batch  */}
-              <label for="user" class="mb-2 text-sm font-medium text-gray-900 dark:text-gray-500">Batch</label>
+              <label for="user" className="mb-2 text-sm font-medium text-gray-900 dark:text-gray-500">Batch</label>
 
               <select id="user" onChange={(event)=>{setBatch(event.target.value)}}
-              class="block border border-grey-light w-full p-3 rounded mb-4" >
+              className="block border border-grey-light w-full p-3 rounded mb-4" >
 
                   {batches.map((sBatch, index)=>{
                     return <option className='h-80' value = {sBatch} key={index}>{sBatch}</option>
@@ -86,7 +122,7 @@ const AddStudent = () => {
               {/* for Category */}
               <div className='w-full my-4 flex justify-center flex-col md:flex-row lg:flex-row'>
                   {/* category button */} 
-                  <label for="batchlabel" class="form-label inline-block mb-2 text-gray-700"
+                  <label for="batchlabel" className="form-label inline-block mb-2 text-gray-700"
                       > Select Category </label>
                       <div className='mx-2 px-2'>  
                       <label className='mx-2' htmlFor="1">1</label>

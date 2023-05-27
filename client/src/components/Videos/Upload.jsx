@@ -4,7 +4,6 @@ import { useState,useEffect } from 'react'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate, useParams } from 'react-router-dom';
-import {IoIosArrowDropdownCircle} from 'react-icons/io'
 
 // Naming convention in the video storage
 // videotitle_uuid
@@ -125,11 +124,9 @@ const Upload = ({setProgress}) => {
     let localdata = localStorage.getItem("data");
     localdata = JSON.parse(localdata)
     data.email = localdata.result.email
-    console.log("url is ",data)
     const Token = JSON.parse(localStorage.getItem("data")).result.token;
-    console.log(Token)
 
-    let result = await fetch("http://localhost:5000/api/Teach/Upload-Video",{
+    let result = await fetch(process.env.REACT_APP_API_URL+"/api/Teach/Upload-Video",{
         method:'post',
         headers:{
           'Content-Type':'application/json',
@@ -139,7 +136,6 @@ const Upload = ({setProgress}) => {
         body:JSON.stringify(data)
       })
       result = await result.json();
-      console.log("results",result);
   }
 
   

@@ -61,7 +61,7 @@ const EmailVerificationToken = async(senderEmail, id)=>{
             to:senderEmail,
             subject:'Verification for vulture institute account',
             text:'This is the mail for sending password',
-            html:`<p>Hey, Welcome to Vulture Institute, Please visit this url to complete your verification process. ${process.env.BACKEND_URL}api/User2/verify/${id}/${verificationToken}
+            html:`<p>Hey, Welcome to Vulture Institute, Please visit this url to complete your verification process. ${process.env.BACKEND_URL}/api/User2/verify/${id}/${verificationToken}
             <br/>
             Thanks
             </p>`

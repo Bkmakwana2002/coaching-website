@@ -17,7 +17,7 @@ exports.checkAuthUser = async(req, res)=>{
             token = req.headers.authorization.split(" ")[1];
 
             //decoded token id
-            const decoded = jwt.verify(token, "process.env.secret");
+            const decoded = jwt.verify(token, process.env.AUTHORIZATION_SECRET_KEY);
 
             const user = await User.findById(decoded.id).select("-password");
             if(user){
@@ -49,7 +49,7 @@ exports.checkAuthUser2 = async (req, res) => {
             token = req.headers.authorization.split(" ")[1];
 
             //decoded token id
-            const decoded = jwt.verify(token, "process.env.secret");
+            const decoded = jwt.verify(token, process.env.AUTHORIZATION_SECRET_KEY);
 
 
             const user = await User2.findById(decoded.id).select("-password");
@@ -87,7 +87,7 @@ exports.checkAuthTeacher = async(req, res)=>{
             token = req.headers.authorization.split(" ")[1];
 
             //decoded token id
-            const decoded = jwt.verify(token, "process.env.secret");
+            const decoded = jwt.verify(token, process.env.AUTHORIZATION_SECRET_KEY);
 
             const user = await Teacher.findById(decoded.id).select("-password");
             if(user){
@@ -119,7 +119,7 @@ exports.checkAuthSuper = async(req, res)=>{
             token = req.headers.authorization.split(" ")[1];
 
             //decoded token id
-            const decoded = jwt.verify(token, "process.env.secret");
+            const decoded = jwt.verify(token, process.env.AUTHORIZATION_SECRET_KEY);
 
             const user = await SuperUser.findById(decoded.id).select("-password");
             if(user){

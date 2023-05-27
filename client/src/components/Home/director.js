@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import shortid from 'shortid';
 function Director() {
 
   const [images, setImages]=useState([]);
@@ -75,7 +76,7 @@ function Director() {
 
                     {
                       images.map((image, index)=>(
-                        <div className="lg:w-4/5 lg:mb-0 mb-6 mx-auto p-4">
+                        <div key={shortid.generate()} className="lg:w-4/5 lg:mb-0 mb-6 mx-auto p-4">
 
                           <div className="h-full text-center ">
                             <img alt="testimonial" className="md:w-96 w-full sm:w-72 sm:h-72 md:h-96 mb-8 object-cover object-top hover:-translate-y-3 ease-in duration-300 p-1 mx-auto inline-block border-2 border-gray-200 bg-gray-300" src={image.url} />

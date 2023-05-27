@@ -62,7 +62,7 @@ const DeleteUser = () => {
     }
 
     // get data from the database
-    fetch(`http://localhost:5000/api/User/remove`, {
+    fetch(process.env.REACT_APP_API_URL+`/api/User/remove`, {
       method:'delete',
       headers:{
         'Content-Type':'application/json'

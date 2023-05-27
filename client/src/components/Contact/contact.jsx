@@ -224,7 +224,7 @@ function Contact(props) {
                     <textarea onChange={(event)=>{setMessage(event.target.value)}}
                             rows="6"
                             placeholder="Your Message"
-                            class="
+                            className="
                             w-2/3
                             mx-auto
                             rounded

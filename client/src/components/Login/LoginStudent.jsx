@@ -13,7 +13,7 @@ const LoginStudent = () => {
 
   const handleStudentLogin = async ()=>{
 
-    let result = await fetch("http://localhost:5000/api/User/login/user",
+    let result = await fetch(process.env.REACT_APP_API_URL+"/api/User/login/user",
       {
         method:'post',
         headers: {
