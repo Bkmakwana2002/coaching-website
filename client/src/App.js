@@ -57,7 +57,6 @@ import AddTeacherImages from './components/AddRemoveImages/AddTeacherImages';
 import ImageOptions from './components/AddRemoveImages/ImageOptions';
 import RemoveSliderImages from './components/AddRemoveImages/RemoveSliderImages';
 import RemoveTeacherImages from './components/AddRemoveImages/RemoveTeacherImages';
-// import AddCourse from './components/Videos/AddCourse';
 import ViewCourses from './components/Videos/View/ViewCourses';
 import ShowCoursesFaculty from './components/Courses/ShowCoursesFaculty';
 import AddCourse from './components/Courses/AddCourse';
