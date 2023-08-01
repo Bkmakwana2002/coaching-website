@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { FaTimes, FaBookReader, FaHome } from "react-icons/fa";
-import { FiLogIn, FiUpload } from "react-icons/fi";
+import { FaTimes, FaHome } from "react-icons/fa";
+import { FiLogIn } from "react-icons/fi";
 import { IoMdPhotos } from "react-icons/io";
 import { MdContactPage } from "react-icons/md";
 import {AiOutlinePlayCircle, AiOutlineEye} from 'react-icons/ai'
@@ -97,19 +97,7 @@ const NavbarFaculty = () => {
                 </div>
                 </Link>
               </li>
-              {/* Courses */}
-               <li>
-                 <Link to='/Courses' onClick={()=>{setOpen(!open)}}>
-                 <div
-                   className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
-                 >
-                   <FaBookReader />
-                   <span className="flex-1 text-xl whitespace-nowrap">
-                     {open ? "Courses" : ""}
-                   </span>
-                 </div>
-                 </Link>
-               </li>
+              
                {/* Gallery */}
                <li>
                  <Link to="/gallery" onClick={()=>{setOpen(!open)}}>
@@ -210,20 +198,6 @@ const NavbarFaculty = () => {
                 }
                 
                 
-              </li>
-
-              {/* Upload Video Option */}
-              <li>
-                <Link to="/upload-video" onClick={()=>{setOpen(!open)}}>
-                <div
-                  className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
-                >
-                  <FiUpload />
-                  <span className="flex-1 text-xl whitespace-nowrap">
-                    {open ? "Upload Video" : ""}
-                  </span>
-                </div>
-                </Link>
               </li>
 
               {/* About Us */}

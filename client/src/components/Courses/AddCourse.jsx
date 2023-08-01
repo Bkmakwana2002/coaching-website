@@ -1,8 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import {AiOutlinePlus} from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
-import shortid from 'shortid'
 
 const AddCourse = () => {
     const [err, setErr] = "";
@@ -51,7 +49,8 @@ const AddCourse = () => {
         }
 
         const createCourse = (e)=>{
-            e.preventDefault()
+            const Token = JSON.parse(localStorage.getItem('data'))?.result?.token; // user bearer token for auth
+            e.preventDefault();
             if(courseInfo.category>5 || courseInfo.category<0){
                 console.log("wrong category")
                 return;
@@ -67,7 +66,8 @@ const AddCourse = () => {
                 method:'post',
                 body:JSON.stringify(courseInfo),
                 headers:{
-                    'Content-Type':'application/json'
+                    'Content-Type':'application/json',
+                    'authorization':'Bearer '+Token
                 }
             }).then(response=>{
                 response.json().then((data)=>{

@@ -1,8 +1,6 @@
 import './App.css';
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import Hero from './components/Home/hero';
-import Footer from './components/Footer';
 import React from 'react';
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar';
 import { useState, useEffect } from 'react';
 import Content from './components/Home/content';
@@ -13,7 +11,6 @@ import Contact from './components/Contact/contact';
 import Navbar from './components/Navbar/Navbar'
 import NavbarSuperUser from './components/Navbar/NavbarSuperUser';
 import AboutUsInfo from './components/NavbarExtentsion/AboutUsInfo';
-import CoursesInfo from './components/NavbarExtentsion/CoursesInfo';
 import Slider from './components/ImageSlider/Slider' 
 import LoginCheck from './components/Login/LoginCheck';
 import SuperUser from './components/superuser/SuperUser';
@@ -28,10 +25,8 @@ import AddFaculty from './components/superuser/AddFaculty';
 import Success from './components/Redirecting/Success';
 import Upload from './components/Videos/Upload';
 import NavbarFaculty from './components/Navbar/NavbarFaculty';
-import ViewFaculty from './components/Videos/View/ViewFaculty';
 import ViewJEE from './components/Videos/View/ViewJEE';
 import ViewNEET from './components/Videos/View/ViewNEET';
-import ViewFoundation from './components/Videos/View/ViewFoundation';
 import Student from './components/Profile/Student';
 import Faculty from './components/Profile/Faculty';
 import Physics from './components/Videos/Subject/Physics';
@@ -57,7 +52,6 @@ import AddTeacherImages from './components/AddRemoveImages/AddTeacherImages';
 import ImageOptions from './components/AddRemoveImages/ImageOptions';
 import RemoveSliderImages from './components/AddRemoveImages/RemoveSliderImages';
 import RemoveTeacherImages from './components/AddRemoveImages/RemoveTeacherImages';
-// import AddCourse from './components/Videos/AddCourse';
 import ViewCourses from './components/Videos/View/ViewCourses';
 import ShowCoursesFaculty from './components/Courses/ShowCoursesFaculty';
 import AddCourse from './components/Courses/AddCourse';
@@ -71,6 +65,10 @@ import Payment from './components/payment/payment';
 import PaymentSuccess from './components/payment/PaymentSuccess';
 import DeleteUser2 from './components/superuser/DeleteUser2';
 import DeleteFaculty from './components/superuser/DeleteFaculty';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+const Hero = React.lazy(()=>import('./components/Home/hero'))
+const Footer = React.lazy(()=>import('./components/Footer'));
 
 
 function App() {
@@ -83,7 +81,6 @@ function App() {
   const [userloggedin, setUserloggedin] = useState(-1);
   
   useEffect(()=>{
-    console.log(data)
     if(data?.userloggedin===0){ 
       setUserloggedin(0);
     }else if(data?.userloggedin===1){
@@ -93,7 +90,6 @@ function App() {
     }else if(data?.userloggedin===3){
       setUserloggedin(3)
     }
-    console.log(data?.userloggedin)
   }, [data?.userloggedin])
   
   const checkNavbarToLoad = ()=>{
@@ -134,6 +130,7 @@ function App() {
   return (
     
     <div>
+      <ToastContainer/>
       <div className="App bg-gray-100 font-lato">
       <BrowserRouter>
       <LoginContext.Provider value = {loginContextparams}>

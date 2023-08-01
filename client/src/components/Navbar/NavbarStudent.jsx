@@ -102,19 +102,7 @@ const NavbarStudent = () => {
                 </Link>
               </li>
 
-              {/* Courses */}
-               <li>
-                 <Link to='/Courses' onClick={()=>{setOpen(!open)}}>
-                 <div
-                   className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 h-10"
-                 >
-                   <FaBookReader />
-                   <span className="flex-1 text-2xl whitespace-nowrap">
-                     {open ? "Courses" : ""}
-                   </span>
-                 </div>
-                 </Link>
-               </li>
+              
                {/* Gallery */}
                <li>
                  <Link to="/gallery" onClick={()=>{setOpen(!open)}}>
