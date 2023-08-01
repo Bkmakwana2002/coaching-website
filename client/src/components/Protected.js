@@ -15,7 +15,7 @@ const Protected = (props) => {
     type = location.state.type;
   }
   // const {type} = location?.state?.type ? location.state.type : {type:undefined};
-  console.log(type)
+  // console.log(type)
 
 
   useEffect(()=>{

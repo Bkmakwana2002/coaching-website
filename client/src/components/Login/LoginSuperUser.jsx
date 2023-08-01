@@ -7,7 +7,7 @@ function LoginSuperUser() {
 
   // v1v2v3v4v5v6v7v8v9v10
 
-  const {email, setEmail, userloggedin, setUserloggedin} = useContext(LoginContext);
+  const {email, setEmail, setUserloggedin} = useContext(LoginContext);
   const[LogInWarning, setLogInWarning] = useState("");
   const [password, setPassword] = useState("");
 
@@ -22,12 +22,8 @@ function LoginSuperUser() {
       }
     });
     result = await result.json();
-    console.log(result);
-    console.log(result.success);
     
     if(result.success){
-      console.log("hello");
-      console.log(userloggedin);
       setUserloggedin(0);
       localStorage.setItem("data",JSON.stringify({result, ...{userloggedin:0, loggedin: true}}));
       navigate('/admin');

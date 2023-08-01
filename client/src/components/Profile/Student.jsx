@@ -1,8 +1,13 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { LoginContext } from '../Contexts/LoginContext'
 
 const Student = () => {
+    const {userloggedin,setUserloggedin} = useContext(LoginContext);
+    const navigate = useNavigate();
   
     const [userinfo, setuserinfo] =useState({
         name:"Fetching...",
@@ -31,20 +36,38 @@ const Student = () => {
         }
         findData();
         console.log(userinfo)
-    }, [])
+    }, []);
+
+    function handleLogout(){
+    
+        if(userloggedin===1 || userloggedin==3){
+            setUserloggedin(-1);
+            localStorage.removeItem("data");
+            toast.info("Logout Successful");
+        }else{
+            toast.error("Something went wrong");
+        }
+        navigate('/');
+        
+    }
 
 
 
     return (
-    <div className='pt-32'>
+    <div className='pt-12'>
         <div className='py-12 rounded h-fit  mx-auto'>
             <img src={userinfo.userpic} alt="" className='w-48 h-48 object-cover rounded-full mx-auto m-2 '/>
             <p className='text-2xl text-black font-inter'>
             {userinfo.name}
             </p> 
-            <p className='bg-blue-300 w-fit mx-auto p-2 rounded'>
-            {userinfo.batch} Student
-            </p>
+            <div className='flex flex-row justify-center items-center'>
+                <p className='bg-blue-300 w-fit mx-2 p-2 rounded'>
+                {userinfo?.batch} Student
+                </p>
+                <button onClick={handleLogout} className='text-white bg-red-500 w-fit mx-2 p-2 rounded hover:bg-red-600 active:bg-red-500 select-none'>
+                Logout
+                </button>
+            </div> 
             <p>
                 Email: {userinfo.email}
             </p>

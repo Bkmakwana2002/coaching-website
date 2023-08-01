@@ -1,7 +1,6 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import {AiOutlinePlus} from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import shortid from 'shortid'
 
