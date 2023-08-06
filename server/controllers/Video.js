@@ -1,10 +1,11 @@
 const Video = require('../models/Video');
+const Course = require('../models/Course')
 
 exports.AddVideo = async (req, res) => {
     try {
 
         const { title, email, subject, teacher, chapter, JEE, NEET, category, Date, vidurl, lecture, courseName } = req.body;
-        console.log(req.body);
+        
         // const chapter = chapterNum;
         let video = await Video.create({
             title,
@@ -20,7 +21,22 @@ exports.AddVideo = async (req, res) => {
             email,
             courseName
         })
+        // course.VideoAdded.push(teacher)
+        // await course.save()
+        // await Course.findOneAndUpdate(
+        //     { courseName: courseName },
+        //     { $push: { VideoAdded: teacher } },
+        //     { new: true }
+        // );
 
+        const course = await Course.findOne({ courseName: courseName });
+
+        if (!course) {
+            return res.status(404).json({ success: false, message: 'Course not found.' });
+        }
+        course.VideoAdded.push(email);
+        await course.save()
+        console.log("HELLO")
         res.status(201).json(video)
 
     } catch (error) {
