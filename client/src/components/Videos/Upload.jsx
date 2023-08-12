@@ -34,7 +34,7 @@ const Upload = ({setProgress}) => {
     lecture:0,
     JEE:false, 
     NEET:false,
-    Date: uploadDate,
+    date: uploadDate,
     email: teacherEmail,
     courseName: courseName,
     vidurl: null,
@@ -141,7 +141,7 @@ const Upload = ({setProgress}) => {
       }));
     }
 
-    console.log(videoInfo)
+    // console.log(videoInfo)
   }
   
   const sendDataToDB = async(URL)=>{
