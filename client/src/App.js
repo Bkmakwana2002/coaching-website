@@ -67,6 +67,7 @@ import DeleteUser2 from './components/superuser/DeleteUser2';
 import DeleteFaculty from './components/superuser/DeleteFaculty';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ShowCourseSuperUser from './components/Courses/ShowCoursesSuperUser';
 const Hero = React.lazy(()=>import('./components/Home/hero'))
 const Footer = React.lazy(()=>import('./components/Footer'));
 
@@ -236,7 +237,7 @@ function App() {
           <Route path ="/addteacherimages" element = {<Protected Component = {<AddTeacherImages setProgress = {setProgress}/>} user="admin" setProgress={setProgress}/> } />
           <Route path ="/removesliderimages" element = {<Protected Component = {<RemoveSliderImages setProgress = {setProgress}/>} user="admin" setProgress={setProgress}/> } />
           <Route path ="/removeteacherimages" element = {<Protected Component = {<RemoveTeacherImages setProgress = {setProgress}/>} user="admin" setProgress={setProgress}/> } />
-          
+          <Route path ="/courses-data" element = {<Protected Component = {<ShowCourseSuperUser setProgress = {setProgress}/>} user="admin" setProgress={setProgress}/> } />
           
           <Route path ="/admin/removestudent" element = {<Protected Component = {<AskUser redirect1={"/admin/removeuser"} redirect2={"/admin/removeuser2"} setProgress = {setProgress}/>} user="admin" setProgress={setProgress}/> } />
           <Route path="/admin/removeuser" element = {<Protected Component = {<DeleteUser setProgress = {setProgress}/>} user="admin" setProgress={setProgress}/> } />
