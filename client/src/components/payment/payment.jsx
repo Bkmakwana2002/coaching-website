@@ -14,7 +14,10 @@ const Payment = () => {
 
     const checkoutHandler = async (amount, courseName) => {
 
-        const { data: { key } } = await axios.get('http://localhost:5000/api/payment/getKey')
+        const Token = JSON.parse(localStorage.getItem("data")).result.token;
+        console.log(Token);
+
+        const { data: { key } } = await axios.get('http://localhost:5000/api/payment/getKey',{headers:{'Authorization':'Bearer '+Token}})
 
         const { data: { order } } = await axios.post("http://localhost:5000/api/payment/checkout", {
             amount

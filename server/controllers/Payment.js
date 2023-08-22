@@ -52,14 +52,18 @@ exports.paymentVerification = async (req, res) => {
             });
             
             const courseItem = await Course.find({ 'title': courseName })
-            console.log(courseItem)
-            courseItem[0].user2Array.push(User2)
-            await courseItem[0].save()
+            console.log("courseItem ",courseItem);
+            if(!courseItem || !courseItem[0]){
+                res.status(200).json({success:false});
+            }
+            console.log("USER 2 ", User2);
+            courseItem[0].user2Array.push(User2);
+            await courseItem[0].save();
 
             // res.redirect(
             //     `http://localhost:3000/paymentsuccess?reference=${razorpay_payment_id}`
             // );
-            res.status(200).json( expectedSignature,razorpay_order_id, razorpay_payment_id, razorpay_signature, User2, courseName,
+            res.status(200).json({success: true}, expectedSignature,razorpay_order_id, razorpay_payment_id, razorpay_signature, User2, courseName,
                 isAuthentic)
         } else {
             res.status(400).json({
@@ -67,6 +71,7 @@ exports.paymentVerification = async (req, res) => {
             });
         }
     } catch (error) {
+        console.log("HELLO, ERROR")
         res.status(500).send(error.message)
         console.log(error.message)
     }

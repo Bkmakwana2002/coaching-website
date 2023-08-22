@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 const courseSchema = mongoose.Schema(
     {
-        title: { type: String, required: true },
+        title: { type: String, required: true, unique: true },
         user2Array : [String], // External Students -- > Login ID/ Email id
         Date : {type: Date},
         Fees :  { type: Number, required: true },

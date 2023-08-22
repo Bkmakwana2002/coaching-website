@@ -14,7 +14,7 @@ const Physics = () => {
   const {type, courseName, courseCategory} = location.state;
 
   useEffect(()=>{
-    console.log(type)
+    // console.log(type)
     const fetchVideosFaculty = async()=>{
       try{
           
